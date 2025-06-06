@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Bienvenue au mariage</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: url("marie.jpg") no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.88); /* Blanc semi-transparent */
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 600px;
+      width: 90%;
+      box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    }
+
+    img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #c97a7a;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #b84545;
+    }
+
+    p {
+      font-size: 18px;
+      margin: 15px 0;
+      color: #444;
+    }
+
+    button {
+      background-color: #b84545;
+      color: white;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #9f3030;
+    }
+  </style>
+</head>couple
+<body>
+  <div class="container">
+    <!-- Remplace cette image par la vraie photo des mariés -->
+    <img src="marie.jpg" alt="Photo des mariés">
+    <h1>Bienvenue au mariage de Sarah & Junior 💍</h1>
+    <p id="table-info">Chargement de votre table...</p>
+    <button onclick="rediriger()">Commander une boisson</button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const table = params.get("table");
+
+    if (table) {
+      document.getElementById("table-info").textContent = "Vous êtes sur la table " + table;
+    } else {
+      document.getElementById("table-info").textContent = "Table 1 🤔";
+    }
+
+    function rediriger() {
+      if (table) {
+       window.open(`commande.html?table=3${table}`, "_blank");
+
+      } else {
+        alert("Numéro de table introuvable.");
+      }
+    }
+  </script>
+</body>
+</html>
