@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Commande de Boisson - Mariage</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      background-color: white;
+      max-width: 400px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label, select, input[type="checkbox"] {
+      margin: 10px 0;
+      display: block;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #25D366;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1ebe5d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Commande de boisson</h2>
+    <label for="table">Numéro de table :</label>
+    <select id="table">
+      <option value="1">Table 1</option>
+      <option value="2">Table 2</option>
+      <option value="3">Table 3</option>
+      <option value="4">Table 4</option>
+      <option value="5">Table 5</option>
+    </select>
+
+    <label>Choisissez votre/vos boisson(s) :</label>
+    <label><input type="checkbox" value="Eau plate"> Eau plate</label>
+    <label><input type="checkbox" value="Eau gazeuse"> Eau gazeuse</label>
+    <label><input type="checkbox" value="Jus d'orange"> Jus d'orange</label>
+    <label><input type="checkbox" value="Soda"> Soda</label>
+    <label><input type="checkbox" value="Vin blanc"> Vin blanc</label>
+    <label><input type="checkbox" value="Vin rouge"> Vin rouge</label>
+
+    <button onclick="envoyerCommande()">Envoyer par WhatsApp</button>
+  </div>
+
+  <script>
+    function envoyerCommande() {
+  const numeroTable = document.getElementById("table").value;
+  const checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
+  const boissons = Array.from(checkboxes).map(cb => cb.value);
+  if (boissons.length === 0) {
+    alert("Veuillez choisir au moins une boisson.");
+    return;
+  }
+  const message = `Bonjour, ici la table ${numeroTable}. Nous aimerions :\n- ${boissons.join('\n- ')}`;
+  const numeroWhatsApp = "243970230104"; // ton numéro ici
+  const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(message)}`;
+  console.log(url); // debug ici
+  window.open(url, "_blank");
+}
+
+  </script>
+</body>
+</html>
